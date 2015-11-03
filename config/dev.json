@@ -1,0 +1,6 @@
+{
+  "version": "0.1.0",
+  "description": "Service for collecting analytics data from a CKAN instance.",
+  "repository": "https://github.com/luiscape/hdx-monitor-sql-collect",
+  "maintainer": "Luis Capelo <capelo@un.org>"
+}
