@@ -40,6 +40,3 @@ class TestRoutes:
     keys = ['online', 'version', 'description', 'repository', 'maintainer']
     for key in result.keys():
       assert key in keys
-
-
-
