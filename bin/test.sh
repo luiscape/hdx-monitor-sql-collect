@@ -4,4 +4,9 @@
 # Run tests with coverage.
 #
 source venv/bin/activate
-nosetests --with-cov --cov-report term-missing -d -v
+nosetests --with-cov \
+          --cov-report term-missing \
+          --no-byte-compile \
+          --nologcapture \
+          -v
+
