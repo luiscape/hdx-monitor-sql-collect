@@ -4,9 +4,10 @@ venv/**
 __pycache__/*
 __pycache__/**
 
+.DS_Store
+.coverage
+
 *.pyc
 *.rdb
 *.sqlite
 *.sqlite-journal
-
-.coverage
