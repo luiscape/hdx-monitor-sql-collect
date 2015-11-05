@@ -8,7 +8,7 @@ script.
 '''
 import flask
 
-from app.routes import defineRoutes
+from app.routes import defineApplicationRoutes
 
 def createServer(database_uri, debug=False):
   '''
@@ -19,6 +19,6 @@ def createServer(database_uri, debug=False):
   app.debug = debug
   app.host = '0.0.0.0'
 
-  defineRoutes(app)
+  defineApplicationRoutes(app)
 
   return app
