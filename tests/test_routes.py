@@ -10,6 +10,28 @@ import flask
 import unittest
 import app.server as Server
 
+class Generic:
+  '''
+  Set of generic tests.
+
+  '''
+  def keys(object):
+    '''
+    Generic test for expected default keys.
+
+    '''
+    keys = ['online', 'version', 'description', 'repository', 'maintainer']
+    for key in object.keys():
+      assert key in keys
+
+  def computations(object):
+    '''
+    Generic test for expected computation keys.
+
+    '''
+    computation_keys = ['total', 'completed', 'failed', 'queued', 'progress']
+    for key in object['computations']:
+      assert key in computation_keys
 
 class TestRoutes:
   '''
@@ -40,10 +62,6 @@ class TestRoutes:
     response = self.client.get('/status')
     result = json.loads(response.data.decode('utf8'))
 
-    keys = ['online', 'version', 'description', 'repository', 'maintainer']
-    for key in result.keys():
-      assert key in keys
-
   #
   # /users
   #
@@ -64,9 +82,8 @@ class TestRoutes:
     response = self.client.get('/users')
     result = json.loads(response.data.decode('utf8'))
 
-    keys = ['success', 'message', 'endpoint', 'time', 'ETA', 'computations']
-    for key in result.keys():
-      assert key in keys
+    Generic.keys(result)
+    Generic.computations(result)
 
   #
   # /revisions
@@ -88,9 +105,8 @@ class TestRoutes:
     response = self.client.get('/revisions')
     result = json.loads(response.data.decode('utf8'))
 
-    keys = ['success', 'message', 'endpoint', 'time', 'ETA', 'computations']
-    for key in result.keys():
-      assert key in keys
+    Generic.keys(result)
+    Generic.computations(result)
 
   #
   # /datasets
@@ -112,9 +128,8 @@ class TestRoutes:
     response = self.client.get('/datasets')
     result = json.loads(response.data.decode('utf8'))
 
-    keys = ['success', 'message', 'endpoint', 'time', 'ETA', 'computations']
-    for key in result.keys():
-      assert key in keys
+    Generic.keys(result)
+    Generic.computations(result)
 
   #
   # /resources
@@ -136,9 +151,8 @@ class TestRoutes:
     response = self.client.get('/resources')
     result = json.loads(response.data.decode('utf8'))
 
-    keys = ['success', 'message', 'endpoint', 'time', 'ETA', 'computations']
-    for key in result.keys():
-      assert key in keys
+    Generic.keys(result)
+    Generic.computations(result)
 
   #
   # /countries
@@ -160,9 +174,8 @@ class TestRoutes:
     response = self.client.get('/countries')
     result = json.loads(response.data.decode('utf8'))
 
-    keys = ['success', 'message', 'endpoint', 'time', 'ETA', 'computations']
-    for key in result.keys():
-      assert key in keys
+    Generic.keys(result)
+    Generic.computations(result)
 
   #
   # /gallery_items
@@ -184,9 +197,8 @@ class TestRoutes:
     response = self.client.get('/gallery_items')
     result = json.loads(response.data.decode('utf8'))
 
-    keys = ['success', 'message', 'endpoint', 'time', 'ETA', 'computations']
-    for key in result.keys():
-      assert key in keys
+    Generic.keys(result)
+    Generic.computations(result)
 
   #
   # /organizations
@@ -208,7 +220,5 @@ class TestRoutes:
     response = self.client.get('/organizations')
     result = json.loads(response.data.decode('utf8'))
 
-    keys = ['success', 'message', 'endpoint', 'time', 'ETA', 'computations']
-    for key in result.keys():
-      assert key in keys
-
+    Generic.keys(result)
+    Generic.computations(result)
