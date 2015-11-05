@@ -21,4 +21,7 @@ class Resource:
 
   def info(self):
     self.object = self.hdx.action.resource_show(id=self.id)
+    self.object['tracking_summary_total'] = self.object['tracking_summary']['total']
+    self.object['tracking_summary_recent'] = self.object['tracking_summary']['recent']
+    self.object.pop('tracking_summary')
     return self.object
