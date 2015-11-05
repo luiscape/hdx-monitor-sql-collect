@@ -4,8 +4,121 @@
   "repository": "https://github.com/luiscape/hdx-monitor-sql-collect",
   "maintainer": "Luis Capelo <capelo@un.org>",
   "ckan": {
-    "api": "foo",
+    "api": "XXXXX-XXXXXXX-XXXXXX-XXXXX",
     "url": "https://data.hdx.rwlabs.org",
     "base": "api/3/action"
-  }
+  },
+  "database":[{
+    "name": "country",
+    "primary_key": ["id"],
+    "columns": [
+        { "field_name": "id" , "type": "TEXT" },
+        { "field_name": "name" , "type": "TEXT" },
+        { "field_name": "created" , "type": "TEXT" },
+        { "field_name": "users" , "type": "TEXT" },
+        { "field_name": "title" , "type": "TEXT" },
+        { "field_name": "revision_id" , "type": "TEXT" },
+        { "field_name": "description" , "type": "TEXT" },
+        { "field_name": "display_name" , "type": "TEXT" },
+        { "field_name": "num_followers" , "type": "INTEGER" },
+        { "field_name": "package_count" , "type": "INTEGER" }
+     ]
+    },
+    {
+    "name": "dataset",
+    "primary_key": ["id"],
+    "columns": [
+        { "field_name": "license_title", "type": "TEXT"},
+        { "field_name": "maintainer", "type": "TEXT"},
+        { "field_name": "package_creator", "type": "TEXT"},
+        { "field_name": "private", "type": "BOOLEAN"},
+        { "field_name": "dataset_date", "type": "TEXT"},
+        { "field_name": "num_tags", "type": "INTEGER"},
+        { "field_name": "id", "type": "TEXT"},
+        { "field_name": "metadata_created", "type": "TEXT"},
+        { "field_name": "indicator", "type": "TEXT"},
+        { "field_name": "methodology_other", "type": "TEXT"},
+        { "field_name": "caveats", "type": "TEXT"},
+        { "field_name": "metadata_modified", "type": "TEXT"},
+        { "field_name": "author", "type": "TEXT"},
+        { "field_name": "author_email", "type": "TEXT"},
+        { "field_name": "license_other", "type": "TEXT"},
+        { "field_name": "methodology", "type": "TEXT"},
+        { "field_name": "dataset_source", "type": "TEXT"},
+        { "field_name": "license_id", "type": "TEXT"},
+        { "field_name": "num_resources", "type": "INTEGER"},
+        { "field_name": "creator_user_id", "type": "TEXT"},
+        { "field_name": "maintainer_email", "type": "TEXT"},
+        { "field_name": "name", "type": "TEXT"},
+        { "field_name": "notes", "type": "TEXT"},
+        { "field_name": "owner_org", "type": "TEXT"},
+        { "field_name": "title", "type": "TEXT"},
+        { "field_name": "revision_id", "type": "TEXT"},
+        { "field_name": "tracking_summary_total", "type": "INTEGER"},
+        { "field_name": "tracking_summary_recent", "type": "INTEGER"}
+     ]
+    },
+    {
+    "name": "gallery_item",
+    "primary_key": ["id"],
+    "columns": [
+        { "field_name": "description", "type": "TEXT" },
+        { "field_name": "view_count", "type": "INTEGER" },
+        { "field_name": "url", "type": "TEXT" },
+        { "field_name": "title", "type": "TEXT" },
+        { "field_name": "image_url", "type": "TEXT" },
+        { "field_name": "type", "type": "TEXT" },
+        { "field_name": "id", "type": "TEXT" },
+        { "field_name": "owner_id", "type": "TEXT" }
+     ]
+    },
+    {
+    "name": "resource",
+    "primary_key": ["id"],
+    "columns": [
+        { "field_name": "resource_uploader", "type": "TEXT" },
+        { "field_name": "package_id", "type": "TEXT" },
+        { "field_name": "datastore_active", "type": "TEXT" },
+        { "field_name": "id", "type": "TEXT" },
+        { "field_name": "description", "type": "TEXT" },
+        { "field_name": "format", "type": "TEXT" },
+        { "field_name": "tracking_summary_total", "type": "INTEGER" },
+        { "field_name": "tracking_summary_recent", "type": "INTEGER" },
+        { "field_name": "last_modified", "type": "TEXT" },
+        { "field_name": "url_type", "type": "TEXT" },
+        { "field_name": "name", "type": "TEXT" },
+        { "field_name": "created", "type": "TEXT" },
+        { "field_name": "url", "type": "TEXT" },
+        { "field_name": "revision_id", "type": "TEXT" }
+     ]
+    },
+    {
+    "name": "revision",
+    "primary_key": ["id"],
+    "columns": [
+        { "field_name": "id", "type":  "TEXT" },
+        { "field_name": "timestamp", "type":  "TEXT" },
+        { "field_name": "message", "type":  "TEXT" },
+        { "field_name": "author", "type":  "TEXT" },
+        { "field_name": "action_type", "type":  "TEXT" }
+     ]
+    },
+    {
+    "name": "user",
+    "primary_key": ["id"],
+    "columns": [
+        { "field_name": "about", "type": "TEXT" },
+        { "field_name": "display_name", "type": "TEXT" },
+        { "field_name": "name", "type": "TEXT" },
+        { "field_name": "created", "type": "TEXT" },
+        { "field_name": "email_hash", "type": "TEXT" },
+        { "field_name": "email", "type": "TEXT" },
+        { "field_name": "sysadmin", "type": "TEXT" },
+        { "field_name": "state", "type": "TEXT" },
+        { "field_name": "number_of_edits", "type": "INTEGER" },
+        { "field_name": "fullname", "type": "TEXT" },
+        { "field_name": "id", "type": "TEXT" },
+        { "field_name": "number_created_packages", "type": "INTEGER" }
+     ]
+    }]
 }
