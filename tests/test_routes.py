@@ -15,23 +15,50 @@ class Generic:
   Set of generic tests.
 
   '''
-  def keys(object):
+  def __init__(self, object):
+    self.object = object
+
+  def keys(self):
     '''
     Generic test for expected default keys.
 
     '''
-    keys = ['online', 'version', 'description', 'repository', 'maintainer']
-    for key in object.keys():
+    keys = ['success', 'message', 'endpoint', 'time', 'ETA', 'computations']
+    for key in self.object.keys():
       assert key in keys
 
-  def computations(object):
+
+  def computations(self):
     '''
     Generic test for expected computation keys.
 
     '''
     computation_keys = ['total', 'completed', 'failed', 'queued', 'progress']
-    for key in object['computations']:
+    for key in self.object['computations']:
       assert key in computation_keys
+
+  def types(self):
+    '''
+    Generic test for the types of data.
+
+    '''
+    types = {
+      'online': bool,
+      'message': str,
+      'endpoint': str,
+      'time': str,
+      'ETA': str,
+      'computations': {
+        'total': int,
+        'completed': int,
+        'failed': int,
+        'queued': int,
+        'progress': float
+      }
+    }
+    for key in self.object.keys():
+      assert type(self.object.get(key)) == types[key]
+
 
 class TestRoutes:
   '''
@@ -62,6 +89,10 @@ class TestRoutes:
     response = self.client.get('/status')
     result = json.loads(response.data.decode('utf8'))
 
+    keys = ['online', 'version', 'description', 'repository', 'maintainer', 'ckan']
+    for key in result.keys():
+      assert key in keys
+
   #
   # /users
   #
@@ -82,8 +113,10 @@ class TestRoutes:
     response = self.client.get('/users')
     result = json.loads(response.data.decode('utf8'))
 
-    Generic.keys(result)
-    Generic.computations(result)
+    generic = Generic(result)
+    generic.keys()
+    generic.types()
+    generic.computations()
 
   #
   # /revisions
@@ -105,8 +138,10 @@ class TestRoutes:
     response = self.client.get('/revisions')
     result = json.loads(response.data.decode('utf8'))
 
-    Generic.keys(result)
-    Generic.computations(result)
+    generic = Generic(result)
+    generic.keys()
+    generic.types()
+    generic.computations()
 
   #
   # /datasets
@@ -128,8 +163,10 @@ class TestRoutes:
     response = self.client.get('/datasets')
     result = json.loads(response.data.decode('utf8'))
 
-    Generic.keys(result)
-    Generic.computations(result)
+    generic = Generic(result)
+    generic.keys()
+    generic.types()
+    generic.computations()
 
   #
   # /resources
@@ -151,8 +188,10 @@ class TestRoutes:
     response = self.client.get('/resources')
     result = json.loads(response.data.decode('utf8'))
 
-    Generic.keys(result)
-    Generic.computations(result)
+    generic = Generic(result)
+    generic.keys()
+    generic.types()
+    generic.computations()
 
   #
   # /countries
@@ -174,8 +213,10 @@ class TestRoutes:
     response = self.client.get('/countries')
     result = json.loads(response.data.decode('utf8'))
 
-    Generic.keys(result)
-    Generic.computations(result)
+    generic = Generic(result)
+    generic.keys()
+    generic.types()
+    generic.computations()
 
   #
   # /gallery_items
@@ -197,8 +238,10 @@ class TestRoutes:
     response = self.client.get('/gallery_items')
     result = json.loads(response.data.decode('utf8'))
 
-    Generic.keys(result)
-    Generic.computations(result)
+    generic = Generic(result)
+    generic.keys()
+    generic.types()
+    generic.computations()
 
   #
   # /organizations
@@ -220,5 +263,7 @@ class TestRoutes:
     response = self.client.get('/organizations')
     result = json.loads(response.data.decode('utf8'))
 
-    Generic.keys(result)
-    Generic.computations(result)
+    generic = Generic(result)
+    generic.keys()
+    generic.types()
+    generic.computations()
