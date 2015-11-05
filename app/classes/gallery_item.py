@@ -22,4 +22,6 @@ class GalleryItem:
 
   def info(self):
     self.object = self.hdx.action.related_show(id=self.id)
+    self.object['view_count'] = self.object['__extras']['view_count']
+    self.object.pop('__extras')
     return self.object
