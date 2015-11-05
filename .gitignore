@@ -5,6 +5,7 @@ __pycache__/*
 __pycache__/**
 
 *.pyc
+*.rdb
 *.sqlite
 *.sqlite-journal
 
