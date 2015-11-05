@@ -17,9 +17,9 @@ class TestClassResource:
   def __init__(self):
     self.keys = [
         'resource_uploader','package_id','datastore_active',
-        'id','description','format','tracking_summary',
-        'last_modified','url_type','name','created',
-        'url','revision_id'
+        'id','description','format', 'last_modified','url_type',
+        'name','created', 'url','revision_id', 'tracking_summary_total',
+        'tracking_summary_recent'
       ]
 
 

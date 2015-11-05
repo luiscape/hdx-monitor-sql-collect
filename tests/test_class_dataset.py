@@ -23,7 +23,8 @@ class TestClassDataset:
       'license_other', 'methodology', 'dataset_source',
       'license_id', 'num_resources', 'creator_user_id',
       'maintainer_email', 'name', 'notes', 'owner_org',
-      'title', 'revision_id'
+      'title', 'revision_id', 'tracking_summary_total',
+      'tracking_summary_recent'
     ]
 
   def test_dataset_keys(self):

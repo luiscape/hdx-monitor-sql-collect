@@ -16,15 +16,14 @@ class TestClassCountry:
   '''
   def __init__(self):
     self.keys = [
-        'users','display_name','description',
-        'image_display_url','package_count',
-        'created','name','is_organization',
-        'title','revision_id','num_followers','id'
+        'users','display_name','description','package_count',
+        'created','name', 'title','revision_id',
+        'num_followers','id'
       ]
 
   def test_country_keys(self):
     '''
-    classes.country:  Test that the Country classe returns the right keys.
+    classes.country:  Test that the Country class returns the right keys.
 
     '''
     result = Country('irq').info()

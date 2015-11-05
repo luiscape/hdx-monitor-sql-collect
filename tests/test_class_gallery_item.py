@@ -16,7 +16,7 @@ class TestClassGalleryItem:
   '''
   def __init__(self):
     self.keys = [
-        'description','__extras','url',
+        'description','view_count','url',
         'title','image_url','type','id',
         'owner_id'
       ]

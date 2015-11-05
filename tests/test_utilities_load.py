@@ -39,7 +39,7 @@ class TestUtilityLoad:
     utilities.load:  Test for the structure of configuration files.
 
     '''
-    keys = ['version', 'description', 'repository', 'maintainer', 'ckan']
+    keys = ['version', 'description', 'repository', 'maintainer', 'ckan', 'database']
     for file in self.files:
       result = Load.loadJSONFile(file)
       for key in result.keys():
