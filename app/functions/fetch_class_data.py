@@ -4,12 +4,29 @@
 Function to load data from CKAN object classes.
 
 '''
+import app.utilities.load as Load
+
 from app.classes.user import User
 from app.classes.country import Country
 from app.classes.dataset import Dataset
 from app.classes.revision import Revision
 from app.classes.resource import Resource
 from app.classes.gallery_item import GalleryItem
+
+config = Load.loadJSONFile('config/dev.json')
+
+def _fields(config, key):
+  '''
+  Extract field names from the database
+  property in the configuration file.
+
+  '''
+  result = None
+  for table in config['database']:
+    if table['name'] == key:
+      result = [ i['field_name'] for i in table['columns'] ]
+
+  return result
 
 def fetchClassData(key=None, id=None):
   '''
@@ -25,4 +42,9 @@ def fetchClassData(key=None, id=None):
       'gallery_item': GalleryItem(id)
     }
 
-  return { 'job': None, 'queue': None, 'data': classes.get(key).info() }
+  #
+  # Selects only the fields
+  # of interest from the dictionary.
+  #
+  result = { k: classes[key].info() for k in _fields(config, key) }
+  return result
