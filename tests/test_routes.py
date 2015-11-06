@@ -93,30 +93,30 @@ class TestRoutes:
     for key in result.keys():
       assert key in keys
 
-  #
-  # /users
-  #
-  def test_users_type(self):
-    '''
-    routes:  /users endpoint returns a JSON object.
+  # #
+  # # /users
+  # #
+  # def test_users_type(self):
+  #   '''
+  #   routes:  /users endpoint returns a JSON object.
 
-    '''
-    response = self.client.get('/users')
-    result = json.loads(response.data.decode('utf8'))
-    assert type(result) == type({})
+  #   '''
+  #   response = self.client.get('/users')
+  #   result = json.loads(response.data.decode('utf8'))
+  #   assert type(result) == type({})
 
-  def test_users_object(self):
-    '''
-    routes:  /users endpoint returns a complete object.
+  # def test_users_object(self):
+  #   '''
+  #   routes:  /users endpoint returns a complete object.
 
-    '''
-    response = self.client.get('/users')
-    result = json.loads(response.data.decode('utf8'))
+  #   '''
+  #   response = self.client.get('/users')
+  #   result = json.loads(response.data.decode('utf8'))
 
-    generic = Generic(result)
-    generic.keys()
-    generic.types()
-    generic.computations()
+  #   generic = Generic(result)
+  #   generic.keys()
+  #   generic.types()
+  #   generic.computations()
 
   #
   # /revisions

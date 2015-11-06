@@ -53,7 +53,7 @@ class TestTableConfiguration:
       ]
     self.tables = {
       'country': [
-        'users','display_name','description','package_count',
+        'display_name','description','package_count',
         'created','name', 'title','revision_id',
         'num_followers','id'
       ],

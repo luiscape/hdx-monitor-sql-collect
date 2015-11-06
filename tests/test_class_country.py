@@ -16,7 +16,7 @@ class TestClassCountry:
   '''
   def __init__(self):
     self.keys = [
-        'users','display_name','description','package_count',
+        'display_name','description','package_count',
         'created','name', 'title','revision_id',
         'num_followers','id'
       ]
