@@ -40,11 +40,11 @@ def createTables(instance='config/dev.json', verbose=True):
     # Construct SQL statement.
     #
     table_sql = ""
-    for f in table['fields']:
-      s = '%s %s, ' % (f['field_name'], f['type'])
+    for column in table['columns']:
+      s = '%s %s, ' % (column['field_name'], column['type'])
       table_sql += s
 
-    statement = 'CREATE TABLE IF NOT EXISTS %s(%sPRIMARY KEY (%s))' % (table['name'], table_sql, ", ".join(table['primary_key']))
+    statement = 'CREATE TABLE IF NOT EXISTS "%s" (%sPRIMARY KEY (%s))' % (table['name'], table_sql, ", ".join(table['primary_key']))
 
     #
     # Make statements to the database.
@@ -52,10 +52,10 @@ def createTables(instance='config/dev.json', verbose=True):
     try:
       cur.execute(statement)
       conn.commit()
-      print("%s table `%s` created." % (item('prompt_bullet'), str(table['name'])))
+      print("%s table `%s` created." % (item('bullet'), str(table['name'])))
 
     except Exception as e:
-      print('%s Table `%s` could not be created.' % (item('prompt_error'), table['name']))
+      print('%s Table `%s` could not be created.' % (item('error'), table['name']))
       if verbose:
         print(e)
       return False
@@ -65,4 +65,3 @@ def createTables(instance='config/dev.json', verbose=True):
   #
   cur.close()
   conn.close()
-
