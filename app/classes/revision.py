@@ -22,11 +22,11 @@ class Revision:
   '''
   def __init__(self, id):
     self.id = id
-    self.hdx = CKAN().init()
+    self.ckan = CKAN().init()
     self.categories = ['Update', 'Create', 'Delete']
 
   def info(self):
-    self.object = self.hdx.action.revision_show(id=self.id)
+    self.object = self.ckan.action.revision_show(id=self.id)
     for category in self.categories:
       result = self.object['message'].find(category)
       if result > -1:

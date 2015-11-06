@@ -17,8 +17,8 @@ class User:
   '''
   def __init__(self, id):
     self.id = id
-    self.hdx = CKAN().init()
+    self.ckan = CKAN().init()
 
   def info(self):
-    self.object = self.hdx.action.user_show(id=self.id)
+    self.object = self.ckan.action.user_show(id=self.id)
     return self.object

@@ -17,10 +17,10 @@ class Dataset:
   '''
   def __init__(self, id):
     self.id = id
-    self.hdx = CKAN().init()
+    self.ckan = CKAN().init()
 
   def info(self):
-    self.object = self.hdx.action.package_show(id=self.id)
+    self.object = self.ckan.action.package_show(id=self.id)
     self.object['tracking_summary_total'] = self.object['tracking_summary']['total']
     self.object['tracking_summary_recent'] = self.object['tracking_summary']['recent']
     self.object.pop('tracking_summary')
