@@ -46,5 +46,5 @@ def fetchClassData(key=None, id=None):
   # Selects only the fields
   # of interest from the dictionary.
   #
-  result = { k: classes[key].info() for k in _fields(config, key) }
+  result = { k: classes[key].info()[k] for k in _fields(config, key) }
   return result
