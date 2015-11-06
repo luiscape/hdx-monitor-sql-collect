@@ -5,26 +5,29 @@ Flask application routes.
 
 '''
 import flask
-import requests
 import app.utilities.load as Load
 
 from rq import Queue
 from redis import Redis
 
-# from app.classes.user import User
-# from app.classes.country import Country
+from app.classes.user import User
+from app.classes.ckan import CKAN
+from app.classes.country import Country
 from app.classes.dataset import Dataset
-# from app.classes.revision import Revision
-# from app.classes.resource import Resource
-# from app.classes.gallery_item import GalleryItem
+from app.classes.revision import Revision
+from app.classes.resource import Resource
+from app.classes.gallery_item import GalleryItem
 
-q = Queue(connection=Redis())
+queue = Queue(connection=Redis())
 
 def defineApplicationRoutes(app, config=None):
   '''
   Defines applicaton routes.
 
   '''
+  ckan = CKAN().init()
+  config = Load.loadJSONFile('config/dev.json')
+
   #
   # Status endpoints.
   #
@@ -36,7 +39,6 @@ def defineApplicationRoutes(app, config=None):
     version number, and description of the application.
 
     '''
-    config = Load.loadJSONFile('config/dev.json')
     result = {
       'online': True,
       'version': config['version'],
@@ -57,18 +59,9 @@ def defineApplicationRoutes(app, config=None):
     CKAN instance.
 
     '''
-    # r = request.get('{CKAN}/user_list')
+    response = ckan.action.user_list()
 
-    # job = q.enqueue(utils.update, endpoint, **opts)
-    # result_url = '%s/result/%s/' % (base, job.id)
-
-    # resp = {
-    #     'job_id': job.id,
-    #     'job_status': job.get_status(),
-    #     'result_url': result_url}
-
-    # return jsonify(**resp)
-    print('foo')
+    return flask.jsonify(**response)
 
   @app.route('/countries')
   def computeCountries():
@@ -77,7 +70,27 @@ def defineApplicationRoutes(app, config=None):
     CKAN instance.
 
     '''
-    print('foo')
+    countries = ckan.action.group_list()
+    for country in countries:
+      job = queue.enqueue(Country.info, country)
+
+    response = {
+        'success': True,
+        'message': 'Computing countries information.',
+        'endpoint': 'countries',
+        'time': None,
+        'ETA': '1 hour and 30 minutes',
+        'computations': {
+          'total': len(countries),
+          'completed': None,
+          'failed': None,
+          'queued': None,
+          'progress': None
+        }
+      }
+
+    return flask.jsonify(**response)
+
 
   @app.route('/dataset')
   def computeDatasets():
