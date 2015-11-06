@@ -6,17 +6,19 @@ fetched correctly.
 
 '''
 import unittest
+import app.utilities.load as Load
 
-from app.functions.fetch_class_data import fetchClassData
+from app.functions.fetch_class_data import fetchClassData, _fields
 
-class TestFunctionClassData(unittest.TestCase):
+config = Load.loadJSONFile('config/dev.json')
+
+class TestFunctionFetchClassData(unittest.TestCase):
   '''
   Performs test for checking function to retrieve
   a specific class data.
 
   '''
   def setUp(self):
-    self.keys = ['job', 'queue', 'data']
     self.classes = [
       { 'class': 'country', 'data': 'irq' },
       { 'class': 'dataset', 'data': 'ebola-cases-2014' },
@@ -42,6 +44,7 @@ class TestFunctionClassData(unittest.TestCase):
 
     '''
     for c in self.classes:
+      keys = _fields(config, c['class'])
       result = fetchClassData(c['class'], c['data'])
-      for key in self.keys:
+      for key in keys:
         self.assertIn(key, result.keys())
