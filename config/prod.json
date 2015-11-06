@@ -5,8 +5,7 @@
   "maintainer": "Luis Capelo <capelo@un.org>",
   "ckan": {
     "api": "XXXXX-XXXXXXX-XXXXXX-XXXXX",
-    "url": "https://data.hdx.rwlabs.org",
-    "base": "api/3/action"
+    "url": "https://data.hdx.rwlabs.org"
   },
   "database":[{
     "name": "country",
