@@ -17,8 +17,10 @@ class Country:
   '''
   def __init__(self, id):
     self.id = id
-    self.hdx = CKAN().init()
+    self.ckan = CKAN().init()
 
-  def info(self):
-    self.object = self.hdx.action.group_show(id=self.id)
+  @classmethod
+  def info(self, id):
+    ckan = CKAN().init()
+    self.object = ckan.action.group_show(id=id)
     return self.object
