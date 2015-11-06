@@ -99,5 +99,11 @@ class TestTableConfiguration:
     for file in self.files:
       database = Load.loadJSONFile(file)['database']
       for table in database:
-        for column in table['columns']:
-          assert column['field_name'] in self.tables.get(table['name'])
+        #
+        # Don't test the 'test' table.
+        #
+        if table['name'] == 'test':
+          continue
+        else:
+          for column in table['columns']:
+            assert column['field_name'] in self.tables.get(table['name'])
