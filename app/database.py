@@ -28,7 +28,12 @@ def createTables(instance='config/dev.json', verbose=True):
   # TODO: add environment variables
   # to these default values.
   #
-  conn = psycopg2.connect(host=HOST_DATABASE, dbname='metabase', user='metabase', password='metabase')
+  conn = psycopg2.connect(
+      host=HOST_DATABASE,
+      dbname='metabase',
+      user='metabase',
+      password='metabase'
+    )
   cur = conn.cursor()
 
   #
