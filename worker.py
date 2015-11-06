@@ -20,7 +20,7 @@ The queues can also be configured:
 
 '''
 QUEUES = ['high', 'normal', 'low']
-REDIS_URL = 'redis://localhost:6379/1'
+REDIS_URL = 'redis://localhost:6379/0'
 
 # REDIS_DB = 3
 # REDIS_PORT = 6380
