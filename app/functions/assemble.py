@@ -29,3 +29,4 @@ def assemble(key=None, id=None):
 
   else:
     print('%s No class data provided. Could not store in database.' % item('error'))
+    return { 'success': False, 'message': 'Failed to store data in database.' }
