@@ -4,10 +4,20 @@
   "repository": "https://github.com/luiscape/hdx-monitor-sql-collect",
   "maintainer": "Luis Capelo <capelo@un.org>",
   "ckan": {
-    "api": "XXXXX-XXXXXXX-XXXXXX-XXXXX",
+    "api": "",
     "url": "https://data.hdx.rwlabs.org"
   },
-  "database":[{
+  "database":[
+    {
+      "name": "test",
+      "primary_key": ["id"],
+      "columns": [
+          { "field_name": "id" , "type": "TEXT" },
+          { "field_name": "name" , "type": "TEXT" },
+          { "field_name": "created" , "type": "TEXT" }
+       ]
+    },
+    {
     "name": "country",
     "primary_key": ["id"],
     "columns": [
