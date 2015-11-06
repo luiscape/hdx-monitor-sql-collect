@@ -8,7 +8,9 @@ script.
 '''
 import flask
 
-from app.routes import defineApplicationRoutes
+# from app.routes import defineApplicationRoutes
+from app.routes.status import blueprint_status
+from app.routes.countries import blueprint_countries
 
 def createServer(database_uri, debug=False):
   '''
@@ -19,6 +21,9 @@ def createServer(database_uri, debug=False):
   app.debug = debug
   app.host = '0.0.0.0'
 
-  defineApplicationRoutes(app)
+  app.register_blueprint(blueprint_status)
+  app.register_blueprint(blueprint_countries)
+
+  # defineApplicationRoutes(app)
 
   return app
