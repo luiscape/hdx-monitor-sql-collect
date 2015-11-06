@@ -11,18 +11,14 @@ and exploration.
 from app.server import createServer
 from app.database import createTables
 
-def main(process):
+def main():
   '''
   Wrapper function for starting SQL collect.
 
   '''
-  if process == 'database':
-    createTables()
-
-  else:
-    server = createServer('test', debug=True)
-    server.run()
+  server = createServer('test', debug=True)
+  server.run()
 
 
 if __name__ == '__main__':
-    main('database')
+    main()
