@@ -6,3 +6,6 @@ test:
 
 run:
 	bash bin/run.sh;
+
+worker:
+	bash bin/worker.sh;
