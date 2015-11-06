@@ -19,6 +19,6 @@ class Country:
     self.id = id
     self.ckan = CKAN().init()
 
-  def info(self, id):
-    self.object = ckan.action.group_show(id=id)
+  def info(self):
+    self.object = self.ckan.action.group_show(id=self.id)
     return self.object
