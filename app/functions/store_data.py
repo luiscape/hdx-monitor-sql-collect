@@ -27,39 +27,31 @@ def storeData(data, table):
   conn = psycopg2.connect(host=HOST_DATABASE, dbname='metabase', user='metabase', password='metabase')
   cur = conn.cursor()
 
-  try:
-    for record in data:
+  #
+  # Check no NULL values are passed.
+  #
+  for key in data.keys():
+    if data.get(key) is None:
+      data.pop(key)
 
-      #
-      # Check no NULL values are passed.
-      #
-      for key in record.keys():
-        if record.get(key) is None:
-          record.pop(key)
+  #
+  # Using `upsert` statement newly available
+  # on PostgreSQL 9.5. We are using a beta version
+  # of the database.
+  #
+  columns = 'INSERT INTO {table} ({columns}) '.format(table=table, columns=",".join(data.keys()))
+  values = 'VALUES ({values})'.format(values="'" + "','".join(str(v) for v in data.values()) + "'")
+  conflict_values = ''
+  for key in data.keys():
+    conflict_values += key + "='" + str(data[key]) + "',"
 
-      #
-      # TODO: Check that the upsert statement
-      # is supported by PostgreSQL 9.5. This
-      #
-      c = 'INSERT INTO {table} ({columns}) '.format(table=table, columns=",".join(record.keys()))
-      v = 'VALUES ({values}) ON CONFLICT UPDATE'.format(values="'" + "','".join(str(v) for v in record.values()) + "'")
-      # v = 'VALUES ({values})'.format(values="'" + "','".join(str(v) for v in record.values()) + "'")
-      cur.execute(c + v)
+  conflict = ' ON CONFLICT(id) DO UPDATE SET {values}'.format(values=conflict_values[:-1])
+  cur.execute(columns + values + conflict)
 
-    #
-    # Commit all records.
-    # And close cursor and connection.
-    #
-    conn.commit()
-    cur.close()
-    conn.close()
-
-  except Exception as e:
-    if e.pgcode == '23505':
-      print('%s Record already exists. Skipping.' % item('warn'))
-      return
-
-    else:
-      print("%s Failed to store record in database." % item('error'))
-      print('PosgreSQL error code: %s' % e.pgcode)
-      return False
+  #
+  # Commit all records.
+  # And close cursor and connection.
+  #
+  conn.commit()
+  cur.close()
+  conn.close()
