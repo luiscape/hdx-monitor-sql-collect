@@ -10,7 +10,7 @@ import flask
 import unittest
 import app.server as Server
 
-class Generic:
+class Generic(unittest.TestCase):
   '''
   Set of generic tests.
 
@@ -25,8 +25,7 @@ class Generic:
     '''
     keys = ['success', 'message', 'endpoint', 'time', 'ETA', 'computations']
     for key in self.object.keys():
-      assert key in keys
-
+      self.assertIn(key, keys)
 
   def computations(self):
     '''
@@ -35,7 +34,7 @@ class Generic:
     '''
     computation_keys = ['total', 'completed', 'failed', 'queued', 'progress']
     for key in self.object['computations']:
-      assert key in computation_keys
+      self.assertIn(key, computation_keys)
 
   def types(self):
     '''
@@ -57,10 +56,10 @@ class Generic:
       }
     }
     for key in self.object.keys():
-      assert type(self.object.get(key)) == types[key]
+      self.assertIs(type(self.object.get(key)), types[key])
 
 
-class TestRoutes:
+class TestRoutes(unittest.TestCase):
   '''
   Tests for all routes and methods.
 
@@ -79,7 +78,7 @@ class TestRoutes:
     '''
     response = self.client.get('/status')
     result = json.loads(response.data.decode('utf8'))
-    assert type(result) == type({})
+    self.assertIs(type(result), type({}))
 
   def test_status_object(self):
     '''
@@ -91,7 +90,7 @@ class TestRoutes:
 
     keys = ['online', 'version', 'description', 'repository', 'maintainer', 'ckan']
     for key in result.keys():
-      assert key in keys
+      self.assertIn(key, keys)
 
   # #
   # # /users
@@ -128,7 +127,7 @@ class TestRoutes:
     '''
     response = self.client.get('/revisions')
     result = json.loads(response.data.decode('utf8'))
-    assert type(result) == type({})
+    self.assertIs(type(result) == type({}))
 
   def test_revisions_object(self):
     '''
@@ -153,7 +152,7 @@ class TestRoutes:
     '''
     response = self.client.get('/datasets')
     result = json.loads(response.data.decode('utf8'))
-    assert type(result) == type({})
+    self.assertIs(type(result), type({}))
 
   def test_datasets_object(self):
     '''
@@ -178,7 +177,7 @@ class TestRoutes:
     '''
     response = self.client.get('/resources')
     result = json.loads(response.data.decode('utf8'))
-    assert type(result) == type({})
+    self.assertIs(type(result), type({}))
 
   def test_resources_object(self):
     '''
@@ -203,7 +202,7 @@ class TestRoutes:
     '''
     response = self.client.get('/countries')
     result = json.loads(response.data.decode('utf8'))
-    assert type(result) == type({})
+    self.assertIs(type(result), type({}))
 
   def test_countries_object(self):
     '''
@@ -228,7 +227,7 @@ class TestRoutes:
     '''
     response = self.client.get('/gallery_items')
     result = json.loads(response.data.decode('utf8'))
-    assert type(result) == type({})
+    self.assertIs(type(result), type({}))
 
   def test_gallery_items_object(self):
     '''
@@ -253,7 +252,7 @@ class TestRoutes:
     '''
     response = self.client.get('/organizations')
     result = json.loads(response.data.decode('utf8'))
-    assert type(result) == type({})
+    self.assertIs(type(result), type({}))
 
   def test_organizations_object(self):
     '''

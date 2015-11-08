@@ -9,7 +9,7 @@ import unittest
 
 from app.classes.dataset import Dataset
 
-class TestClassDataset:
+class TestClassDataset(unittest.TestCase):
   '''
   Performs tests on the Dataset calss.
 
@@ -35,4 +35,4 @@ class TestClassDataset:
     result = Dataset('ebola-cases-2014').info()
 
     for key in self.keys:
-      assert key in result.keys()
+      self.assertIn(key, result.keys())

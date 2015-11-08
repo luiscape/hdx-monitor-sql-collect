@@ -9,7 +9,7 @@ import unittest
 
 from app.classes.country import Country
 
-class TestClassCountry:
+class TestClassCountry(unittest.TestCase):
   '''
   Performs tests on the Country calss.
 
@@ -29,4 +29,4 @@ class TestClassCountry:
     result = Country('irq').info()
 
     for key in self.keys:
-      assert key in result.keys()
+      self.assertIn(key, result.keys())

@@ -9,7 +9,7 @@ import os
 import unittest
 import app.utilities.item as Item
 
-class TestUtilitiesItem:
+class TestUtilitiesItem(unittest.TestCase):
   '''
   Unit tests for the item prompt formatter.
 
@@ -25,5 +25,4 @@ class TestUtilitiesItem:
     '''
     for t in self.cases:
       result = Item.item(t)
-      assert type(result) == type(u'')
-
+      self.assertIs(type(result), type(''))

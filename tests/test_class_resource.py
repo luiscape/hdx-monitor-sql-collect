@@ -9,7 +9,7 @@ import unittest
 
 from app.classes.resource import Resource
 
-class TestClassResource:
+class TestClassResource(unittest.TestCase):
   '''
   Performs tests on the Resource calss.
 
@@ -31,4 +31,4 @@ class TestClassResource:
     result = Resource('c59b5722-ca4b-41ca-a446-472d6d824d01').info()
 
     for key in self.keys:
-      assert key in result.keys()
+      self.assertIn(key, result.keys())

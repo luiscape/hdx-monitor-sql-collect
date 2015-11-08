@@ -10,7 +10,7 @@ import os
 import unittest
 import app.utilities.load as Load
 
-class TestDatabaseConfiguration:
+class TestDatabaseConfiguration(unittest.TestCase):
   '''
   Unit tests for the checking the database properties of
   the configuration files.
@@ -35,10 +35,10 @@ class TestDatabaseConfiguration:
       result = Load.loadJSONFile(file)
       for table in result['database']:
         for key in table.keys():
-          assert key in keys
+          self.assertIn(key, keys)
 
 
-class TestTableConfiguration:
+class TestTableConfiguration(unittest.TestCase):
   '''
   Unit tests for checking if the tables
   contain the right column names.
@@ -106,4 +106,4 @@ class TestTableConfiguration:
           continue
         else:
           for column in table['columns']:
-            assert column['field_name'] in self.tables.get(table['name'])
+            self.assertIn(column['field_name'], self.tables.get(table['name']))

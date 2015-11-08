@@ -9,7 +9,7 @@ import unittest
 
 from app.classes.user import User
 
-class TestClassUser:
+class TestClassUser(unittest.TestCase):
   '''
   Performs tests on the User class.
 
@@ -30,4 +30,4 @@ class TestClassUser:
     result = User('luiscape').info()
 
     for key in self.keys:
-      assert key in result.keys()
+      self.assertIn(key, result.keys())

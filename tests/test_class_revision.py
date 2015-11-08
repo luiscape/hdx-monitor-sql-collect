@@ -10,7 +10,7 @@ import unittest
 
 from app.classes.revision import Revision
 
-class TestClassRevision:
+class TestClassRevision(unittest.TestCase):
   '''
   Performs tests on the Revision class.
 
@@ -29,4 +29,4 @@ class TestClassRevision:
     result = Revision('b1e6f54d-d086-4c03-9739-84ae400e5aa1').info()
 
     for key in self.keys:
-      assert key in result.keys()
+      self.assertIn(key, result.keys())

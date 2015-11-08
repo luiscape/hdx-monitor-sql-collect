@@ -11,7 +11,7 @@ import os
 import unittest
 import app.utilities.load as Load
 
-class TestUtilityLoad:
+class TestUtilityLoad(unittest.TestCase):
   '''
   Unit tests for the loading of configuration files.
 
@@ -32,7 +32,7 @@ class TestUtilityLoad:
     '''
     for file in self.files:
       result = Load.loadJSONFile(file)
-      assert type(result) == type({})
+      self.assertIs(type(result), type({}))
 
   def test_structure(self):
     '''
@@ -43,6 +43,4 @@ class TestUtilityLoad:
     for file in self.files:
       result = Load.loadJSONFile(file)
       for key in result.keys():
-        assert key in keys
-
-
+        self.assertIn(key, keys)

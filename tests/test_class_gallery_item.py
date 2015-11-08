@@ -9,7 +9,7 @@ import unittest
 
 from app.classes.gallery_item import GalleryItem
 
-class TestClassGalleryItem:
+class TestClassGalleryItem(unittest.TestCase):
   '''
   Performs tests on the GalleryItem class.
 
@@ -29,5 +29,4 @@ class TestClassGalleryItem:
     result = GalleryItem('753ccf05-872f-4c8d-9cc2-8e562f6fc1d5').info()
 
     for key in self.keys:
-      assert key in result.keys()
-
+      self.assertIn(key, result.keys())
