@@ -9,3 +9,6 @@ run:
 
 worker:
 	bash bin/worker.sh;
+
+dashboard:
+	bash bin/dashboard.sh;
