@@ -14,8 +14,7 @@ class TestUtilitiesItem(unittest.TestCase):
   Unit tests for the item prompt formatter.
 
   '''
-
-  def __init__(self):
+  def setUp(self):
     self.cases = ['warn', 'error', 'bullet', 'success']
 
   def test_type(self):

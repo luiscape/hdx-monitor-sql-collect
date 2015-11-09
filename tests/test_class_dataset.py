@@ -14,7 +14,7 @@ class TestClassDataset(unittest.TestCase):
   Performs tests on the Dataset calss.
 
   '''
-  def __init__(self):
+  def setUp(self):
     self.keys = [
       'license_title', 'maintainer', 'package_creator',
       'private', 'dataset_date', 'num_tags', 'id',

@@ -14,7 +14,7 @@ class TestClassResource(unittest.TestCase):
   Performs tests on the Resource calss.
 
   '''
-  def __init__(self):
+  def setUp(self):
     self.keys = [
         'resource_uploader','package_id','datastore_active',
         'id','description','format', 'last_modified','url_type',

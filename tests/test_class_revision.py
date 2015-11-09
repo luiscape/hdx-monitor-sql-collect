@@ -15,7 +15,7 @@ class TestClassRevision(unittest.TestCase):
   Performs tests on the Revision class.
 
   '''
-  def __init__(self):
+  def setUp(self):
     self.keys = [
         'id', 'timestamp', 'message',
         'author', 'action_type'

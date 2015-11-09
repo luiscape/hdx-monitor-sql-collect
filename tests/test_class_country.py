@@ -14,7 +14,7 @@ class TestClassCountry(unittest.TestCase):
   Performs tests on the Country calss.
 
   '''
-  def __init__(self):
+  def setUp(self):
     self.keys = [
         'display_name','description','package_count',
         'created','name', 'title','revision_id',

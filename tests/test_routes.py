@@ -15,7 +15,7 @@ class Generic(unittest.TestCase):
   Set of generic tests.
 
   '''
-  def __init__(self, object):
+  def setUp(self, object):
     self.object = object
 
   def keys(self):
@@ -57,6 +57,9 @@ class Generic(unittest.TestCase):
     }
     for key in self.object.keys():
       self.assertIs(type(self.object.get(key)), types[key])
+      if type(key) == type({}):
+        for k in key:
+          self.assertIs(type(self.object['computations'].get(key)), types['computations'][k])
 
 
 class TestRoutes(unittest.TestCase):
@@ -64,7 +67,7 @@ class TestRoutes(unittest.TestCase):
   Tests for all routes and methods.
 
   '''
-  def __init__(self):
+  def setUp(self):
     self.app = Server.createServer('test', debug=False)
     self.client = self.app.test_client()
 
@@ -73,7 +76,7 @@ class TestRoutes(unittest.TestCase):
   #
   def test_status_type(self):
     '''
-    routes:  /status endpoint returns a JSON object.
+    routes.status:  /status endpoint returns a JSON object.
 
     '''
     response = self.client.get('/status')
@@ -82,7 +85,7 @@ class TestRoutes(unittest.TestCase):
 
   def test_status_object(self):
     '''
-    routes:  /status endpoint returns a complete object.
+    routes.status:  /status endpoint returns a complete object.
 
     '''
     response = self.client.get('/status')
@@ -122,7 +125,7 @@ class TestRoutes(unittest.TestCase):
   #
   def test_revisions_type(self):
     '''
-    routes:  /revisions endpoint returns a JSON object.
+    routes.revisions:  /revisions endpoint returns a JSON object.
 
     '''
     response = self.client.get('/revisions')
@@ -131,7 +134,7 @@ class TestRoutes(unittest.TestCase):
 
   def test_revisions_object(self):
     '''
-    routes:  /revisions endpoint returns a complete object.
+    routes.revisions:  /revisions endpoint returns a complete object.
 
     '''
     response = self.client.get('/revisions')
@@ -147,7 +150,7 @@ class TestRoutes(unittest.TestCase):
   #
   def test_datasets_type(self):
     '''
-    routes:  /datasets endpoint returns a JSON object.
+    routes.datasets:  /datasets endpoint returns a JSON object.
 
     '''
     response = self.client.get('/datasets')
@@ -156,7 +159,7 @@ class TestRoutes(unittest.TestCase):
 
   def test_datasets_object(self):
     '''
-    routes:  /datasets endpoint returns a complete object.
+    routes.datasets:  /datasets endpoint returns a complete object.
 
     '''
     response = self.client.get('/datasets')
@@ -172,7 +175,7 @@ class TestRoutes(unittest.TestCase):
   #
   def test_resources_type(self):
     '''
-    routes:  /resources endpoint returns a JSON object.
+    routes.resources:  /resources endpoint returns a JSON object.
 
     '''
     response = self.client.get('/resources')
@@ -181,7 +184,7 @@ class TestRoutes(unittest.TestCase):
 
   def test_resources_object(self):
     '''
-    routes:  /resources endpoint returns a complete object.
+    routes.resources:  /resources endpoint returns a complete object.
 
     '''
     response = self.client.get('/resources')
@@ -197,7 +200,7 @@ class TestRoutes(unittest.TestCase):
   #
   def test_countries_type(self):
     '''
-    routes:  /countries endpoint returns a JSON object.
+    routes.countries:  /countries endpoint returns a JSON object.
 
     '''
     response = self.client.get('/countries')
@@ -206,7 +209,7 @@ class TestRoutes(unittest.TestCase):
 
   def test_countries_object(self):
     '''
-    routes:  /countries endpoint returns a complete object.
+    routes.countries:  /countries endpoint returns a complete object.
 
     '''
     response = self.client.get('/countries')
@@ -222,7 +225,7 @@ class TestRoutes(unittest.TestCase):
   #
   def test_gallery_items_type(self):
     '''
-    routes:  /gallery_items endpoint returns a JSON object.
+    routes:.gallery_items  /gallery_items endpoint returns a JSON object.
 
     '''
     response = self.client.get('/gallery_items')
@@ -231,7 +234,7 @@ class TestRoutes(unittest.TestCase):
 
   def test_gallery_items_object(self):
     '''
-    routes:  /gallery_items endpoint returns a complete object.
+    routes.gallery_items:  /gallery_items endpoint returns a complete object.
 
     '''
     response = self.client.get('/gallery_items')
@@ -247,7 +250,7 @@ class TestRoutes(unittest.TestCase):
   #
   def test_organizations_type(self):
     '''
-    routes:  /organizations endpoint returns a JSON object.
+    routes.organizations:  /organizations endpoint returns a JSON object.
 
     '''
     response = self.client.get('/organizations')
@@ -256,7 +259,7 @@ class TestRoutes(unittest.TestCase):
 
   def test_organizations_object(self):
     '''
-    routes:  /organizations endpoint returns a complete object.
+    routes.organizations:  /organizations endpoint returns a complete object.
 
     '''
     response = self.client.get('/organizations')

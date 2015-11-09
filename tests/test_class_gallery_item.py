@@ -14,7 +14,7 @@ class TestClassGalleryItem(unittest.TestCase):
   Performs tests on the GalleryItem class.
 
   '''
-  def __init__(self):
+  def setUp(self):
     self.keys = [
         'description','view_count','url',
         'title','image_url','type','id',

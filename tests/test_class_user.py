@@ -14,7 +14,7 @@ class TestClassUser(unittest.TestCase):
   Performs tests on the User class.
 
   '''
-  def __init__(self):
+  def setUp(self):
     self.keys = [
         'about', 'apikey', 'display_name',
         'name', 'created', 'email_hash', 'email',

@@ -16,8 +16,7 @@ class TestUtilityLoad(unittest.TestCase):
   Unit tests for the loading of configuration files.
 
   '''
-
-  def __init__(self):
+  def setUp(self):
     dir_name = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
     self.folder = os.path.join(dir_name, 'config')
     self.files = [
