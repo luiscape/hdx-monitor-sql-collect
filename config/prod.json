@@ -7,14 +7,23 @@
     "api": "",
     "url": "https://data.hdx.rwlabs.org"
   },
-  "database":[{
-    "name": "country",
+  "database":[
+    {
+      "name": "test",
+      "primary_key": ["id"],
+      "columns": [
+          { "field_name": "id" , "type": "TEXT" },
+          { "field_name": "name" , "type": "TEXT" },
+          { "field_name": "created" , "type": "TEXT" }
+       ]
+    },
+    {
+    "name": "countries",
     "primary_key": ["id"],
     "columns": [
         { "field_name": "id" , "type": "TEXT" },
         { "field_name": "name" , "type": "TEXT" },
         { "field_name": "created" , "type": "TEXT" },
-        { "field_name": "users" , "type": "TEXT" },
         { "field_name": "title" , "type": "TEXT" },
         { "field_name": "revision_id" , "type": "TEXT" },
         { "field_name": "description" , "type": "TEXT" },
@@ -24,7 +33,7 @@
      ]
     },
     {
-    "name": "dataset",
+    "name": "datasets",
     "primary_key": ["id"],
     "columns": [
         { "field_name": "license_title", "type": "TEXT"},
@@ -58,7 +67,7 @@
      ]
     },
     {
-    "name": "gallery_item",
+    "name": "gallery_items",
     "primary_key": ["id"],
     "columns": [
         { "field_name": "description", "type": "TEXT" },
@@ -72,7 +81,7 @@
      ]
     },
     {
-    "name": "resource",
+    "name": "resources",
     "primary_key": ["id"],
     "columns": [
         { "field_name": "resource_uploader", "type": "TEXT" },
@@ -92,7 +101,7 @@
      ]
     },
     {
-    "name": "revision",
+    "name": "revisions",
     "primary_key": ["id"],
     "columns": [
         { "field_name": "id", "type":  "TEXT" },
@@ -103,7 +112,7 @@
      ]
     },
     {
-    "name": "user",
+    "name": "users",
     "primary_key": ["id"],
     "columns": [
         { "field_name": "about", "type": "TEXT" },
