@@ -5,4 +5,4 @@
 #
 source venv/bin/activate
 python -V
-rqworker
+rqworker -c worker

@@ -19,7 +19,16 @@ The queues can also be configured:
 
 
 '''
-QUEUES = ['high', 'normal', 'low']
+QUEUES = [
+  'users',
+  'helpers',
+  'resouces',
+  'datasets',
+  'countries',
+  'revisions',
+  'gallery_items'
+  ]
+
 REDIS_URL = 'redis://localhost:6379/0'
 
 # REDIS_DB = 3
