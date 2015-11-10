@@ -15,6 +15,7 @@ from app.routes.status import blueprint_status
 from app.routes.datasets import blueprint_datasets
 from app.routes.countries import blueprint_countries
 from app.routes.revisions import blueprint_revisions
+from app.routes.organizations import blueprint_organizations
 from app.routes.gallery_items import blueprint_gallery_items
 
 def createServer(database_uri, debug=False):
@@ -32,6 +33,7 @@ def createServer(database_uri, debug=False):
   app.register_blueprint(blueprint_datasets)
   app.register_blueprint(blueprint_countries)
   app.register_blueprint(blueprint_revisions)
+  app.register_blueprint(blueprint_organizations)
   app.register_blueprint(blueprint_gallery_items)
 
   return app

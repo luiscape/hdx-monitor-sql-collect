@@ -26,6 +26,7 @@ QUEUES = [
   'datasets',
   'countries',
   'revisions',
+  'organizations',
   'gallery_items'
   ]
 

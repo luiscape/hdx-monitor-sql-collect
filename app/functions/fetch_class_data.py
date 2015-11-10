@@ -12,6 +12,7 @@ from app.classes.dataset import Dataset
 from app.classes.revision import Revision
 from app.classes.resource import Resource
 from app.classes.gallery_item import GalleryItem
+from app.classes.organization import Organization
 
 config = Load.loadJSONFile('config/dev.json')
 
@@ -39,7 +40,8 @@ def fetchClassData(key=None, id=None):
       'datasets': Dataset(id),
       'revisions': Revision(id),
       'resources': Resource(id),
-      'gallery_items': GalleryItem(id)
+      'gallery_items': GalleryItem(id),
+      'organizations': Organization(id)
     }
 
   #
