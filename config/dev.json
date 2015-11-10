@@ -18,6 +18,21 @@
        ]
     },
     {
+      "name": "organizations",
+      "primary_key": ["id"],
+      "columns": [
+          { "field_name": "display_name", "type": "TEXT" },
+          { "field_name": "description", "type": "TEXT" },
+          { "field_name": "package_count", "type": "INTEGER" },
+          { "field_name": "created", "type": "TEXT" },
+          { "field_name": "name", "type": "TEXT" },
+          { "field_name": "title", "type": "TEXT" },
+          { "field_name": "revision_id", "type": "TEXT" },
+          { "field_name": "num_followers", "type": "INTEGER" },
+          { "field_name": "id", "type": "TEXT" }
+       ]
+    },
+    {
     "name": "countries",
     "primary_key": ["id"],
     "columns": [
