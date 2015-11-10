@@ -33,6 +33,18 @@ class Dataset:
     missing = ['caveats', 'dataset_date', 'indicator', 'methodology_other', 'license_other']
     for m in missing:
       if self.object.get(m) is None:
-        self.object[m] = 'NULL'
+        self.object[m] = None
 
     return self.object
+
+  def resources(self):
+    '''
+    Method for fetching the resource
+    ids of a dataset.
+
+    '''
+    self.resources = []
+    for resource in self.object['resources']:
+      self.resources.append(resource['id'])
+
+    return self.resources
