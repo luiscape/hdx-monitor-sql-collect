@@ -6,9 +6,6 @@ routes to manage the differnt job queues. This
 route will be registered in `server.py`.
 
 '''
-#
-# Status endpoints.
-#
 import flask
 
 from app.functions.manage_queue import getStatus, cleanQueue
