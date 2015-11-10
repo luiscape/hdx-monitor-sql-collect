@@ -9,6 +9,7 @@ script.
 import flask
 
 from app.classes.ckan import CKAN
+from app.routes.users import blueprint_users
 from app.routes.queues import blueprint_queues
 from app.routes.status import blueprint_status
 from app.routes.datasets import blueprint_datasets
@@ -25,6 +26,7 @@ def createServer(database_uri, debug=False):
   app.debug = debug
   app.host = '0.0.0.0'
 
+  app.register_blueprint(blueprint_users)
   app.register_blueprint(blueprint_status)
   app.register_blueprint(blueprint_queues)
   app.register_blueprint(blueprint_datasets)
