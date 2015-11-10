@@ -36,24 +36,28 @@ def computeResources():
     # This route should not be registered
     # right now.
     #
-    key = 'resource'
-    objects = ckan.action.package_list()
-    for object in objects:
-      job = queue.enqueue(fetchAndStore, key, object['id'])
+    # key = 'resources'
+    # objects = ckan.action.package_list()
+    # for object in objects:
+    #   job = queue.enqueue(fetchAndStore, key, object['id'])
 
+    # response = {
+    #     'success': True,
+    #     'message': 'Computing users information.',
+    #     'endpoint': key,
+    #     'time': None,
+    #     'ETA': '1 hour and 30 minutes',
+    #     'computations': {
+    #       'total': len(objects),
+    #       'completed': None,
+    #       'failed': None,
+    #       'queued': None,
+    #       'progress': None
+    #     }
+    #   }
     response = {
-        'success': True,
-        'message': 'Computing users information.',
-        'endpoint': key,
-        'time': None,
-        'ETA': '1 hour and 30 minutes',
-        'computations': {
-          'total': len(objects),
-          'completed': None,
-          'failed': None,
-          'queued': None,
-          'progress': None
-        }
-      }
+      'success': False,
+      'message': 'Endpoint not available.'
+    }
 
     return flask.jsonify(**response)
