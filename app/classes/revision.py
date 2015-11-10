@@ -28,8 +28,15 @@ class Revision:
   def info(self):
     self.object = self.ckan.action.revision_show(id=self.id)
     for category in self.categories:
-      result = self.object['message'].find(category)
+      message = self.object.get('message')
+      if type(message) == type(''):
+        result = message.find(category)
+      else:
+        result = -1
+
       if result > -1:
         self.object['action_type'] = category
+      else:
+        self.object['action_type'] = 'unknown'
 
     return self.object

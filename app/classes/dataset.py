@@ -24,4 +24,15 @@ class Dataset:
     self.object['tracking_summary_total'] = self.object['tracking_summary']['total']
     self.object['tracking_summary_recent'] = self.object['tracking_summary']['recent']
     self.object.pop('tracking_summary')
+
+    #
+    # Filling missing values.
+    # For some reason `None` is
+    # not accepted by the database.
+    #
+    missing = ['caveats', 'dataset_date', 'indicator', 'methodology_other', 'license_other']
+    for m in missing:
+      if self.object.get(m) is None:
+        self.object[m] = 'NULL'
+
     return self.object
