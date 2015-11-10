@@ -5,9 +5,6 @@ Blueprint of the /status route.
 This route will be registered in `server.py`.
 
 '''
-#
-# Status endpoints.
-#
 import flask
 import app.utilities.load as Load
 
