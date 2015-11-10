@@ -34,12 +34,12 @@ def fetchClassData(key=None, id=None):
 
   '''
   classes = {
-      'user': User(id),
-      'country': Country(id),
-      'dataset': Dataset(id),
-      'revision': Revision(id),
-      'resource': Resource(id),
-      'gallery_item': GalleryItem(id)
+      'users': User(id),
+      'countries': Country(id),
+      'datasets': Dataset(id),
+      'revisions': Revision(id),
+      'resources': Resource(id),
+      'gallery_items': GalleryItem(id)
     }
 
   #

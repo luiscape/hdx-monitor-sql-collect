@@ -32,9 +32,13 @@ def storeData(data, table):
   #
   # Check no NULL values are passed.
   #
+  pops = []
   for key in data.keys():
     if data.get(key) is None:
-      data.pop(key)
+      pops.append(key)
+
+  for key in pops:
+    data.pop(key)
 
   #
   # Using `upsert` statement newly available
@@ -45,7 +49,7 @@ def storeData(data, table):
   values = 'VALUES ({values})'.format(values="'" + "','".join(slugify(str(v)) for v in data.values()) + "'")
   conflict_values = ''
   for key in data.keys():
-    conflict_values += key + "='" + str(data[key]) + "',"
+    conflict_values += key + "='" + slugify(str(data[key])) + "',"
 
   conflict = ' ON CONFLICT(id) DO UPDATE SET {values}'.format(values=conflict_values[:-1])
   cur.execute(columns + values + conflict)
