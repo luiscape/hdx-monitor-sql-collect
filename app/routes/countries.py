@@ -26,16 +26,17 @@ def computeCountries():
     CKAN instance.
 
     '''
-    status = getStatus('countries')
+    key = 'countries'
+    status = getStatus(key)
     countries = ckan.action.group_list()
     if status['empty']:
       for country in countries:
-        job = queue.enqueue(fetchAndStore, 'country', country)
+        job = queue.enqueue(fetchAndStore, key, country)
 
     response = {
         'success': True,
         'message': 'Computing countries information. {n} before finished.'.format(n=status['count']),
-        'endpoint': 'countries',
+        'endpoint': key,
         'time': None,
         'ETA': None,
         'computations': {

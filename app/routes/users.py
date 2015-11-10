@@ -15,6 +15,7 @@ from rq import Queue
 from redis import Redis
 
 from app.classes.ckan import CKAN
+from app.functions.manage_queue import getStatus
 from app.functions.fetch_store import fetchAndStore
 
 ckan = CKAN().init()
@@ -28,23 +29,25 @@ def computeUsers():
     CKAN instance.
 
     '''
-    key = 'user'
+    key = 'users'
+    status = getStatus(key)
+    queue = Queue(connection=Redis(), name=key)
     objects = ckan.action.user_list()
-    for object in objects:
-      job = queue.enqueue(fetchAndStore, key, object)
+    if status['empty']:
+      for object in objects:
+        job = queue.enqueue(fetchAndStore, key, object['id'])
 
     response = {
         'success': True,
-        'message': 'Computing users information.',
+        'message': 'Computing user information. {n} before finished.'.format(n=status['count']),
         'endpoint': key,
         'time': None,
-        'ETA': '1 hour and 30 minutes',
+        'ETA': None,
         'computations': {
           'total': len(objects),
-          'completed': None,
-          'failed': None,
-          'queued': None,
-          'progress': None
+          'completed': len(objects) - status['count'],
+          'queued': status['count'],
+          'progress': round(((len(objects) - status['count']) / len(objects)) * 100, 2)
         }
       }
 
