@@ -30,4 +30,5 @@ def statusPage():
     'repository': config['repository'],
     'description': config['description']
   }
+
   return flask.jsonify(**result)
