@@ -10,6 +10,8 @@ doesn't exist and an update if it exists.
 import os
 import psycopg2
 
+from slugify import slugify
+
 from app.utilities.item import item
 from app.utilities.load import loadJSONFile
 
@@ -40,7 +42,7 @@ def storeData(data, table):
   # of the database.
   #
   columns = 'INSERT INTO {table} ({columns}) '.format(table=table, columns=",".join(data.keys()))
-  values = 'VALUES ({values})'.format(values="'" + "','".join(str(v) for v in data.values()) + "'")
+  values = 'VALUES ({values})'.format(values="'" + "','".join(slugify(str(v)) for v in data.values()) + "'")
   conflict_values = ''
   for key in data.keys():
     conflict_values += key + "='" + str(data[key]) + "',"
