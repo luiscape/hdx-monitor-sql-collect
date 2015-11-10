@@ -19,6 +19,5 @@ def main():
   server = createServer('test', debug=True)
   server.run()
 
-
 if __name__ == '__main__':
-    main()
+  main()
