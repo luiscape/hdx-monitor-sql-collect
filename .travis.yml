@@ -17,7 +17,8 @@ services:
 # Creates PostgreSQL database.
 #
 before_script:
-  - psql -c 'create database metabase;' -U metabase
+  - psql --command "CREATE USER metabase WITH SUPERUSER PASSWORD 'metabase';"
+  - createdb -O metabase metabase
 
 #
 # Command to install dependencies.
