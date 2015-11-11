@@ -5,4 +5,4 @@
 # dashboard.
 #
 source venv/bin/activate
-rq-dashboard
+screen -S worker -d -m -L rq-dashboard

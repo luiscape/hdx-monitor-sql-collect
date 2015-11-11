@@ -4,5 +4,4 @@
 # Start worker for interfacing with Redis.
 #
 source venv/bin/activate
-python -V
-rqworker -c worker
+screen -S worker -d -m -L rqworker -c worker
