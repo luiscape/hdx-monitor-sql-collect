@@ -11,3 +11,4 @@ __pycache__/**
 *.rdb
 *.sqlite
 *.sqlite-journal
+screenlog.*
