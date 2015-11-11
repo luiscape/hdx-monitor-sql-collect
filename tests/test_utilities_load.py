@@ -43,3 +43,14 @@ class TestUtilityLoad(unittest.TestCase):
       result = Load.loadJSONFile(file)
       for key in result.keys():
         self.assertIn(key, keys)
+
+  def test_api_key(self):
+    '''
+    utilities.load:  Test that API key has been properly loaded from environment variable.
+
+    '''
+    key = os.environ.get('CKAN_KEY')
+    for file in self.files:
+      result = Load.loadJSONFile(file)
+      self.assertIn(key, result['ckan']['api'])
+
