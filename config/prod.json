@@ -4,7 +4,7 @@
   "repository": "https://github.com/luiscape/hdx-monitor-sql-collect",
   "maintainer": "Luis Capelo <capelo@un.org>",
   "ckan": {
-    "api": "",
+    "api": null,
     "url": "https://data.hdx.rwlabs.org"
   },
   "database":[
