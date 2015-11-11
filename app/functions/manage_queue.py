@@ -25,7 +25,7 @@ def getStatus(queue_id='default'):
   '''
   queue = Queue(connection=Redis(), name=queue_id)
   result = {
-    'message': 'Queue `{name}` is not empty. {n} jobs are being processed.'.format(name=queue_id, n=queue.count),
+    'message': 'Queue `{name}` has {n} jobs that are being processed.'.format(name=queue_id, n=queue.count),
     'empty': queue.is_empty(),
     'count': queue.count,
     'ids': queue.get_job_ids()

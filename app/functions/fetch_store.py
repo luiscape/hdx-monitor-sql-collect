@@ -15,6 +15,7 @@ of background jobs.
 from app.utilities.item import item
 from app.functions.store_data import storeData
 from app.functions.fetch_class_data import fetchClassData
+from app.functions.fetch_resource_data import fetchResourceData
 
 def fetchAndStore(key=None, id=None):
   '''
@@ -23,10 +24,12 @@ def fetchAndStore(key=None, id=None):
   message to be delivered to the user.
 
   '''
-  data = fetchClassData(key, id)
-  if data:
-    storeData(data, key)
+  if key == 'resources':
+    data = fetchResourceData(dataset_id=id)
+    for resource in data:
+      storeData(resource, key)
 
   else:
-    print('%s No class data provided. Could not store in database.' % item('error'))
-    return { 'success': False, 'message': 'Failed to store data in database.' }
+    data = fetchClassData(key, id)
+    if data:
+      storeData(data, key)
