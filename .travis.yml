@@ -14,6 +14,12 @@ services:
   - redis-server
 
 #
+# Creates PostgreSQL database.
+#
+before_script:
+  - psql -c 'create database metabase;' -U metabase
+
+#
 # Command to install dependencies.
 #
 install:
