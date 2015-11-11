@@ -19,7 +19,6 @@ from app.functions.manage_queue import getStatus
 from app.functions.fetch_store import fetchAndStore
 
 ckan = CKAN().init()
-queue = Queue(connection=Redis())
 blueprint_users = flask.Blueprint('users', __name__)
 
 @blueprint_users.route('/users')

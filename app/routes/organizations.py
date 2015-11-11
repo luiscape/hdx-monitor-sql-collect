@@ -16,7 +16,6 @@ from app.functions.manage_queue import getStatus
 from app.functions.fetch_store import fetchAndStore
 
 ckan = CKAN().init()
-queue = Queue(connection=Redis(), name='organizations')
 blueprint_organizations = flask.Blueprint('organizations', __name__)
 
 @blueprint_organizations.route('/organizations')
@@ -28,6 +27,7 @@ def computeOrganizations():
     '''
     key = 'organizations'
     status = getStatus(key)
+    queue = Queue(connection=Redis(), name=key)
     objects = ckan.action.organization_list()
     if status['empty']:
       for object in objects:

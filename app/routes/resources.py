@@ -15,10 +15,10 @@ from rq import Queue
 from redis import Redis
 
 from app.classes.ckan import CKAN
+from app.functions.manage_queue import getStatus
 from app.functions.fetch_store import fetchAndStore
 
 ckan = CKAN().init()
-queue = Queue(connection=Redis())
 blueprint_resources = flask.Blueprint('resources', __name__)
 
 @blueprint_resources.route('/resources')
@@ -36,28 +36,26 @@ def computeResources():
     # This route should not be registered
     # right now.
     #
-    # key = 'resources'
-    # objects = ckan.action.package_list()
-    # for object in objects:
-    #   job = queue.enqueue(fetchAndStore, key, object['id'])
+    key = 'resources'
+    status = getStatus(key)
+    queue = Queue(connection=Redis(), name=key)
+    objects = ckan.action.package_list()
+    if status['empty']:
+      for object in objects:
+        job = queue.enqueue(fetchAndStore, key, object)
 
-    # response = {
-    #     'success': True,
-    #     'message': 'Computing users information.',
-    #     'endpoint': key,
-    #     'time': None,
-    #     'ETA': '1 hour and 30 minutes',
-    #     'computations': {
-    #       'total': len(objects),
-    #       'completed': None,
-    #       'failed': None,
-    #       'queued': None,
-    #       'progress': None
-    #     }
-    #   }
     response = {
-      'success': False,
-      'message': 'Endpoint not available.'
-    }
+        'success': True,
+        'message': 'Computing resource information. {n} before finished.'.format(n=status['count']),
+        'endpoint': key,
+        'time': None,
+        'ETA': None,
+        'computations': {
+          'total': len(objects),
+          'completed': len(objects) - status['count'],
+          'queued': status['count'],
+          'progress': round(((len(objects) - status['count']) / len(objects)) * 100, 2)
+        }
+      }
 
     return flask.jsonify(**response)

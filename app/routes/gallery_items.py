@@ -19,7 +19,6 @@ from app.functions.manage_queue import getStatus
 from app.functions.fetch_store import fetchAndStore
 
 ckan = CKAN().init()
-queue = Queue(connection=Redis())
 blueprint_gallery_items = flask.Blueprint('gallery_items', __name__)
 
 @blueprint_gallery_items.route('/gallery_items')

@@ -16,7 +16,6 @@ from app.functions.manage_queue import getStatus
 from app.functions.fetch_store import fetchAndStore
 
 ckan = CKAN().init()
-queue = Queue(connection=Redis(), name='countries')
 blueprint_countries = flask.Blueprint('countries', __name__)
 
 @blueprint_countries.route('/countries')
@@ -28,6 +27,7 @@ def computeCountries():
     '''
     key = 'countries'
     status = getStatus(key)
+    queue = Queue(connection=Redis(), name=key)
     countries = ckan.action.group_list()
     if status['empty']:
       for country in countries:
