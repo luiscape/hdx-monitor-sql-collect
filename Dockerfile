@@ -5,20 +5,18 @@
 #                                                 #
 ###################################################
 
-FROM ubuntu:latest
+FROM python:3.5
 
 MAINTAINER Luis Capelo <capelo@un.org>
 
 #
-# Installing Python 3.5
+# Making sure terminal
+# uses utf-8.
 #
 RUN \
-  apt-get update \
-  && apt-get -y upgrade \
-  && apt-get install -y software-properties-common build-essential libffi-dev libssl-dev \
-  && add-apt-repository ppa:fkrull/deadsnakes \
-  && apt-get -y install wget git screen \
-  && apt-get -y install python3.5 python3.5-dev python-dev python-distribute python-pip python-virtualenv
+  export LC_ALL=en_US.UTF-8 \
+  && export LANG=en_US.UTF-8 \
+  && export LANGUAGE=en_US.UTF-8
 
 #
 # Clone app and install dependencies.

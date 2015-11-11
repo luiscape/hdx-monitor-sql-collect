@@ -1,6 +1,11 @@
 #!/bin/bash
 
 #
+# Setting up database.
+#
+python configure.py
+
+#
 # Start workers.
 #
 for i in {1..4}
