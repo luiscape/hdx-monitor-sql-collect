@@ -4,6 +4,15 @@ python:
   - "3.5"
 
 #
+# Installs PostgreSQL.
+#
+addons:
+  postgresql: "9.4"
+
+services:
+  - postgresql
+
+#
 # Command to install dependencies.
 #
 install:
