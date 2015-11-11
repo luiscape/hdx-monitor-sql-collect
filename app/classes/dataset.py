@@ -30,7 +30,7 @@ class Dataset:
     # For some reason `None` is
     # not accepted by the database.
     #
-    missing = ['caveats', 'dataset_date', 'indicator', 'methodology_other', 'license_other']
+    missing = ['caveats', 'dataset_date', 'indicator', 'methodology_other', 'license_other', 'methodology']
     for m in missing:
       if self.object.get(m) is None:
         self.object[m] = None
@@ -39,8 +39,7 @@ class Dataset:
 
   def resources(self):
     '''
-    Method for fetching the resource
-    ids of a dataset.
+    Fetches source ids from a dataset instance.
 
     '''
     self.resources = []

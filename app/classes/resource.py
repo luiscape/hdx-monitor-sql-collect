@@ -24,4 +24,15 @@ class Resource:
     self.object['tracking_summary_total'] = self.object['tracking_summary']['total']
     self.object['tracking_summary_recent'] = self.object['tracking_summary']['recent']
     self.object.pop('tracking_summary')
+
+    #
+    # Filling missing values.
+    # For some reason `None` is
+    # not accepted by the database.
+    #
+    missing = ['resource_uploader', 'datastore_active']
+    for m in missing:
+      if self.object.get(m) is None:
+        self.object[m] = None
+
     return self.object
