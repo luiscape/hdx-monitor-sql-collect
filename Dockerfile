@@ -19,6 +19,13 @@ RUN \
   && export LANGUAGE=en_US.UTF-8
 
 #
+# Installing screen.
+#
+RUN \
+  apt-get update \
+  && apt-get install -y screen
+
+#
 # Clone app and install dependencies.
 #
 RUN \
@@ -28,6 +35,6 @@ RUN \
 
 WORKDIR "/hdx-monitor-sql-collect"
 
-EXPOSE 3000 9181
+EXPOSE 5000 9181
 
 CMD ["make", "run"]
