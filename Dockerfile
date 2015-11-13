@@ -1,9 +1,10 @@
-###################################################
-#                                                 #
-#   HDX Monitor: analytics service. Service for   #
-#   providing analytics for the HDX Monitor.      #
-#                                                 #
-###################################################
+####################################################
+#                                                  #
+#   HDX Monitor: analytics service. Service for    #
+#   collecting analytics data for the HDX Monitor  #
+#   analytic service.                              #
+#                                                  #
+####################################################
 
 FROM python:3.5
 
