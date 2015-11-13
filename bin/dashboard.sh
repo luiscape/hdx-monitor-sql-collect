@@ -5,4 +5,4 @@
 # dashboard.
 #
 source venv/bin/activate
-screen -S worker -d -m -L rq-dashboard
+screen -S dashboard -d -m -L rq-dashboard --redis_url=redis://$REDIS_PORT_6379_TCP_ADDR:6379
