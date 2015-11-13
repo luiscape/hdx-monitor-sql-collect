@@ -3,6 +3,7 @@
 #
 # Setting up database.
 #
+source venv/bin/activate
 python configure.py
 
 #
@@ -24,5 +25,4 @@ make dashboard
 #
 # Start Flask server.
 #
-source venv/bin/activate
 python run.py
