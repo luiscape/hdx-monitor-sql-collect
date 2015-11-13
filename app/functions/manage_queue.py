@@ -13,17 +13,20 @@ by the routes so that the final user knows what
 is the current status of the running queues.
 
 '''
+import os
 import flask
 
 from rq import Queue
 from redis import Redis
+
+REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR')
 
 def getStatus(queue_id='default'):
   '''
   Gets status of queue.
 
   '''
-  queue = Queue(connection=Redis(), name=queue_id)
+  queue = Queue(connection=Redis(host=REDIS_HOST), name=queue_id)
   result = {
     'message': 'Queue `{name}` has {n} jobs that are being processed.'.format(name=queue_id, n=queue.count),
     'empty': queue.is_empty(),

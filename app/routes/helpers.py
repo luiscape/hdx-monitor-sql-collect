@@ -1,8 +1,8 @@
 
-@app.route('/all')
-def computeAll():
-  '''
-  Computes information about all CKAN objects.
+# @app.route('/all')
+# def computeAll():
+#   '''
+#   Computes information about all CKAN objects.
 
-  '''
-  print('foo')
+#   '''
+#   print('foo')

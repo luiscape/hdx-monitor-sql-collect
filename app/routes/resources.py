@@ -5,9 +5,7 @@ Blueprint of the /resources route.
 This route will be registered in `server.py`.
 
 '''
-#
-# Status endpoints.
-#
+import os
 import flask
 import app.utilities.load as Load
 
@@ -19,6 +17,7 @@ from app.functions.manage_queue import getStatus
 from app.functions.fetch_store import fetchAndStore
 
 ckan = CKAN().init()
+REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR')
 blueprint_resources = flask.Blueprint('resources', __name__)
 
 @blueprint_resources.route('/resources')
@@ -38,7 +37,7 @@ def computeResources():
     #
     key = 'resources'
     status = getStatus(key)
-    queue = Queue(connection=Redis(), name=key)
+    queue = Queue(connection=Redis(host=REDIS_HOST), name=key)
     objects = ckan.action.package_list()
     if status['empty']:
       for object in objects:

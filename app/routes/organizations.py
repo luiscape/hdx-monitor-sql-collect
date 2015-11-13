@@ -5,6 +5,7 @@ Blueprint of the /organizations route.
 This route will be registered in `server.py`.
 
 '''
+import os
 import flask
 import app.utilities.load as Load
 
@@ -16,6 +17,7 @@ from app.functions.manage_queue import getStatus
 from app.functions.fetch_store import fetchAndStore
 
 ckan = CKAN().init()
+REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR')
 blueprint_organizations = flask.Blueprint('organizations', __name__)
 
 @blueprint_organizations.route('/organizations')
@@ -27,7 +29,7 @@ def computeOrganizations():
     '''
     key = 'organizations'
     status = getStatus(key)
-    queue = Queue(connection=Redis(), name=key)
+    queue = Queue(connection=Redis(host=REDIS_HOST), name=key)
     objects = ckan.action.organization_list()
     if status['empty']:
       for object in objects:
