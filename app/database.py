@@ -10,6 +10,9 @@ import psycopg2
 from app.utilities.item import item
 from app.utilities.load import loadJSONFile
 
+DB_NAME = os.environ.get('DB_NAME')
+DB_USER = os.environ.get('DB_USER')
+DB_PASSWORD = os.environ.get('DB_PASSWORD')
 HOST_DATABASE = os.environ.get('POSTGRES_PORT_5432_TCP_ADDR')
 
 def createTables(instance='config/dev.json', verbose=True):
@@ -17,7 +20,6 @@ def createTables(instance='config/dev.json', verbose=True):
   Creates tables in a PostgreSQL instance.
 
   '''
-
   #
   # Loading database information
   # from config file.
@@ -30,9 +32,9 @@ def createTables(instance='config/dev.json', verbose=True):
   #
   conn = psycopg2.connect(
       host=HOST_DATABASE,
-      dbname='metabase',
-      user='metabase',
-      password='metabase'
+      dbname=DB_NAME,
+      user=DB_USER,
+      password=DB_PASSWORD
     )
   cur = conn.cursor()
 
