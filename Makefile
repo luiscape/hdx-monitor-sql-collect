@@ -12,3 +12,6 @@ worker:
 
 dashboard:
 	bash bin/dashboard.sh;
+
+stats:
+	bash bin/stats.sh;
