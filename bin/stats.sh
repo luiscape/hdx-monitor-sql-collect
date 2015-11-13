@@ -5,4 +5,4 @@
 # statistis in the terminal.
 #
 source venv/bin/activate
-rqinfo --url=$REDIS_PORT_6379_TCP_ADDR:6379
+rqinfo --url redis://$REDIS_PORT_6379_TCP_ADDR:6379
