@@ -3,7 +3,7 @@ omit =
     */python?.?/*
     */venv/*
     */site-packages/nose/*
-    */app/*
+    */tests/*
     *__init__*
 
 exclude_lines =
