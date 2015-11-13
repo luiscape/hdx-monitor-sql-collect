@@ -19,6 +19,10 @@ The queues can also be configured:
 
 
 '''
+import os
+
+REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR')
+REDIS_URL = 'redis://{host}:6379/0'.format(host=REDIS_HOST)
 QUEUES = [
   'users',
   'helpers',
@@ -30,8 +34,6 @@ QUEUES = [
   'organizations',
   'gallery_items'
   ]
-
-REDIS_URL = 'redis://localhost:6379/0'
 
 # REDIS_DB = 3
 # REDIS_PORT = 6380
