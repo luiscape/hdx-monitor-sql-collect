@@ -27,8 +27,6 @@ class Dataset:
 
     #
     # Filling missing values.
-    # For some reason `None` is
-    # not accepted by the database.
     #
     missing = ['caveats', 'dataset_date', 'indicator', 'methodology_other', 'license_other', 'methodology']
     for m in missing:
