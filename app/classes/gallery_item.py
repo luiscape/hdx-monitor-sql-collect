@@ -24,4 +24,13 @@ class GalleryItem:
     self.object = self.ckan.action.related_show(id=self.id)
     self.object['view_count'] = self.object['__extras']['view_count']
     self.object.pop('__extras')
+
+    #
+    # Filling missing values.
+    #
+    missing = ['image_url']
+    for m in missing:
+      if self.object.get(m) is None:
+        self.object[m] = None
+
     return self.object
