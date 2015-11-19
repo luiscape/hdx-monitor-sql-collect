@@ -36,31 +36,54 @@ def storeData(data, table):
       password=DB_PASSWORD
     )
   cur = conn.cursor()
+  conn.set_client_encoding('UTF8')
 
   #
   # Check no NULL values are passed.
   #
-  pops = []
-  for key in data.keys():
-    if data.get(key) is None:
-      pops.append(key)
+  def _clean_null(data):
+    '''
+    Cleans nulls or empty stings from dictionaries.
 
-  for key in pops:
-    data.pop(key)
+    '''
+    pops = []
+    for key in data.keys():
+      if data.get(key) is None or len(str(data.get(key))) == 0:
+        pops.append(key)
+
+    for key in pops:
+      data.pop(key)
+
+    return data
+
+  def _conflict_values(data, keys):
+    '''
+    Create conflict values statement.
+
+    '''
+    conflict_values = ''
+    for key in keys:
+      conflict_values += key + "='" + str(data[key]).replace("'", "`") + "',"
+
+    s = ' ON CONFLICT(id) DO UPDATE SET {values}'.format(values=conflict_values[:-1])
+    return s
 
   #
   # Using `upsert` statement newly available
   # on PostgreSQL 9.5. We are using a beta version
   # of the database.
   #
-  columns = 'INSERT INTO {table} ({columns}) '.format(table=table, columns=",".join(data.keys()))
-  values = 'VALUES ({values})'.format(values="'" + "','".join(slugify(str(v)) for v in data.values()) + "'")
-  conflict_values = ''
-  for key in data.keys():
-    conflict_values += key + "='" + slugify(str(data[key])) + "',"
-
-  conflict = ' ON CONFLICT(id) DO UPDATE SET {values}'.format(values=conflict_values[:-1])
-  cur.execute(columns + values + conflict)
+  data = _clean_null(data)
+  keys = data.keys()
+  values = ','.join("'" + str(v).replace("'", "`") + "'" for v in data.values())
+  statement = {
+    'columns': 'INSERT INTO {table} ({columns}) '.format(table=table, columns=",".join(keys)),
+    'values': 'VALUES (%s)' % values,
+    'conflict': _conflict_values(data, keys)
+  }
+  print(type(values))
+  # print(statement['values'])
+  cur.execute(statement['columns'] + statement['values'] + statement['conflict'])
 
   #
   # Commit all records.
