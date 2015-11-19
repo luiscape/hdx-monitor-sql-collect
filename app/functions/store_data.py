@@ -10,8 +10,6 @@ doesn't exist and an update if it exists.
 import os
 import psycopg2
 
-from slugify import slugify
-
 from app.utilities.item import item
 from app.utilities.load import loadJSONFile
 
